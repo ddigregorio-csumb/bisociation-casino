@@ -14,9 +14,9 @@ Rate your combination from 1–10, then choose **Rate & share** to publish it on
 
 GitHub Pages serves the static game from `main`, `/ (root)`. The published `index.html` is self-contained, with embedded styles, scripts, and reel graphics. The editable local source is split into HTML, CSS, JavaScript, and SVG files; `python3 build_release.py` produces `release/index.html`, which is published as the repository's root `index.html`.
 
-Community connection status: pending creation of the dedicated Supabase project. Until connected, players can generate, rate, and save ideas privately in their own browser; public sharing is visibly disabled.
+Shared ideas and ratings use the dedicated `bisociation-casino` Supabase project (`tbiefntviubefpmzujji`). Guest sign-in is enabled; visitors do not need an email address or password.
 
-Supabase will store shared ideas and ratings. Apply `database/schema.sql` in the dedicated project's SQL Editor, enable anonymous sign-ins, and configure the project URL and **publishable** browser key in `config.js` before rebuilding the release. Never publish a secret or service-role key. The schema enables row-level security, blocks direct table access, and provides narrow authenticated functions for publishing, listing, and rating ideas. Publishing an idea and its initial rating is atomic; retries are idempotent. Each guest can publish up to 30 ideas per hour.
+For a replacement database, apply `database/schema.sql` in the dedicated project's SQL Editor, enable anonymous sign-ins, and configure the project URL and **publishable** browser key in `config.js` before rebuilding the release. Never publish a secret or service-role key. The schema enables row-level security, blocks direct table access, and provides narrow authenticated functions for publishing, listing, and rating ideas. Publishing an idea and its initial rating is atomic; retries are idempotent. Each guest can publish up to 30 ideas per hour.
 
 The host can moderate an idea by setting `bc_ideas.hidden` to `true` in the Supabase Table Editor. Public lists omit hidden ideas and private guest IDs. Supabase service availability and quotas are separate from GitHub Pages; a paused project must be resumed in Supabase for community sharing to work.
 
